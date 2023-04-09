@@ -169,20 +169,32 @@ class _BmiCalcState extends State<BmiCalc> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  if (currentWieghtValue > 0) {
+                                    currentWieghtValue--;
+                                  } else {
+                                    currentWieghtValue = 0;
+                                  }
+                                });
+                              },
                               backgroundColor: const Color(0xFF5C5E6E),
                               child: const Icon(
                                 Icons.remove,
-                                size: 40,
+                                size: 35,
                                 color: Colors.white,
                               ),
                             ),
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  currentWieghtValue++;
+                                });
+                              },
                               backgroundColor: const Color(0xFF5C5E6E),
                               child: const Icon(
                                 Icons.add,
-                                size: 40,
+                                size: 35,
                                 color: Colors.white,
                               ),
                             ),
@@ -216,20 +228,32 @@ class _BmiCalcState extends State<BmiCalc> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  if (currentAgeValue > 0) {
+                                    currentAgeValue--;
+                                  } else {
+                                    currentAgeValue = 0;
+                                  }
+                                });
+                              },
                               backgroundColor: const Color(0xFF5C5E6E),
                               child: const Icon(
                                 Icons.remove,
-                                size: 40,
+                                size: 35,
                                 color: Colors.white,
                               ),
                             ),
                             FloatingActionButton(
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  currentAgeValue++;
+                                });
+                              },
                               backgroundColor: const Color(0xFF5C5E6E),
                               child: const Icon(
                                 Icons.add,
-                                size: 40,
+                                size: 35,
                                 color: Colors.white,
                               ),
                             ),
