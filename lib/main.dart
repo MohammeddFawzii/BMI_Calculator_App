@@ -12,6 +12,8 @@ class BmiCalc extends StatefulWidget {
 }
 
 class _BmiCalcState extends State<BmiCalc> {
+  double iconSizeMale = 80;
+  double iconSizeFemale = 80;
   double currentSliderValue = 0;
   int currentWieghtValue = 0;
   int currentAgeValue = 0;
@@ -48,13 +50,21 @@ class _BmiCalcState extends State<BmiCalc> {
                     //container content
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.male,
-                          color: Colors.white,
-                          size: 80,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              iconSizeMale = 100;
+                              iconSizeFemale = 80;
+                            });
+                          },
+                          child: Icon(
+                            Icons.male,
+                            color: Colors.white,
+                            size: iconSizeMale,
+                          ),
                         ),
-                        Text(
+                        const Text(
                           "MALE",
                           style: TextStyle(fontSize: 20, color: Colors.grey),
                         )
@@ -72,13 +82,21 @@ class _BmiCalcState extends State<BmiCalc> {
                     // container content
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      children: const [
-                        Icon(
-                          Icons.female,
-                          color: Colors.white,
-                          size: 80,
+                      children: [
+                        InkWell(
+                          onTap: () {
+                            setState(() {
+                              iconSizeMale = 80;
+                              iconSizeFemale = 100;
+                            });
+                          },
+                          child: Icon(
+                            Icons.female,
+                            color: Colors.white,
+                            size: iconSizeFemale,
+                          ),
                         ),
-                        Text(
+                        const Text(
                           "FEMALE",
                           style: TextStyle(fontSize: 20, color: Colors.grey),
                         ),
@@ -284,6 +302,9 @@ class _BmiCalcState extends State<BmiCalc> {
                           currentSliderValue == 0 ||
                           currentWieghtValue == 0) {
                         button = "Pls Enter UR Data First";
+                      }
+                      if (iconSizeFemale == iconSizeMale) {
+                        button = "Choose UR Type, Press Again";
                       }
                     });
                   },
