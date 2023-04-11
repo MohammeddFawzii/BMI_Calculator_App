@@ -15,6 +15,8 @@ class _BmiCalcState extends State<BmiCalc> {
   double currentSliderValue = 0;
   int currentWieghtValue = 0;
   int currentAgeValue = 0;
+  String button = "CALCULAT";
+  double bmiValue = 0;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -188,7 +190,7 @@ class _BmiCalcState extends State<BmiCalc> {
                             FloatingActionButton(
                               onPressed: () {
                                 setState(() {
-                                  currentWieghtValue++;
+                                  currentWieghtValue = currentWieghtValue + 10;
                                 });
                               },
                               backgroundColor: const Color(0xFF5C5E6E),
@@ -271,14 +273,27 @@ class _BmiCalcState extends State<BmiCalc> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    setState(() {
+                      bmiValue = currentWieghtValue /
+                          ((currentSliderValue / 100) *
+                              (currentSliderValue / 100));
+                      button = bmiValue.toStringAsFixed(2);
+
+                      if (currentAgeValue == 0 ||
+                          currentSliderValue == 0 ||
+                          currentWieghtValue == 0) {
+                        button = "Pls Enter UR Data First";
+                      }
+                    });
+                  },
                   style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFE73D65)),
-                  child: const Padding(
-                    padding: EdgeInsets.all(8.0),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "CALCULAT",
-                      style: TextStyle(fontSize: 30),
+                      button,
+                      style: const TextStyle(fontSize: 30),
                     ),
                   ),
                 ),
